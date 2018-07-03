@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/aop 
+                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- db -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/springbook?characterEncoding=UTF-8" />
+		<property name="username" value="springbook" />
+		<property name="username" value="springbookpw" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- aop -->
+	<!-- tx:annotation-driven 설정. transaction-manager 를 지정하지 않으면 자동으로 transactionManager 라는 이름의 bean 을 찾아 지정한다. -->
+	<tx:annotation-driven />
+
+	<!-- code 의 annotation 을 이용한 빈 후처리기 기능 사용 가능. 이 예제에서는 "@PstConstruct" 사용 -->
+	<!-- xmlns:context="http://www.springframework.org/schema/context" -->
+	<!-- xsi:schemaLocation="http://www.springframework.org/schema/context/spring-context-3.0.xsd" -->
+	<context:annotation-config />
+
+    <!-- sql service -->
+	<bean id="sqlService" class="sample.spring3._10_jaxb.SqlServiceImpl">
+		<property name="sqlReader" ref="sqlReader" />
+		<property name="sqlRegistry" ref="sqlRegistry" />
+	</bean>
+
+	<bean id="sqlReader" class="sample.spring3._10_jaxb.SqlReaderJaxbXml">
+		<property name="sqlmapFile" value="/sample/spring3/_10_jaxb/sqlmap.xml" />
+	</bean>
+
+	<bean id="sqlRegistry" class="sample.spring3._10_jaxb.SqlRegistryHashMap">
+	</bean>
+
+    <!-- application components -->
+    <bean id="userDao" class="sample.spring3._10_jaxb.UserDaoJdbc">
+        <property name="dataSource" ref="dataSource" />
+        <property name="sqlService" ref="sqlService" />
+    </bean>
+
+	<bean id="userService" class="sample.spring3._10_jaxb.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+</beans>

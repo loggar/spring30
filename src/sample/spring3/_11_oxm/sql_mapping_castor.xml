@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN" "http://www.castor.org/mapping.dtd"-->
+<!--DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN" "http://castor.exolab.org/mapping.dtd"-->
+<!--DOCTYPE mapping:configuration SYSTEM "mapping.dtd"-->
+<!-- https://www2.informatik.hu-berlin.de/~xing/Lib/Docs/Castor/schema.html mepping.dtd -->
+<mapping>
+	<class name="sample.spring3._10_jaxb.sqlmap.Sqlmap">
+		<map-to xml="sqlmap" />
+		<field name="sql" type="sample.spring3._10_jaxb.sqlmap.SqlType" required="true" collection="arraylist">
+			<bind-xml name="sql" node="element" />
+		</field>
+	</class>
+	<class name="sample.spring3._10_jaxb.sqlmap.SqlType">
+		<map-to xml="sql" />
+		<field name="key" type="string" required="true">
+			<bind-xml name="key" node="attribute" />
+		</field>
+		<field name="value" type="string" required="true">
+			<bind-xml node="text" />
+		</field>
+	</class>
+</mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- JAXB -->
+	<!-- bean id="unmarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="sample.spring3._10_jaxb.sqlmap" />
+		</bean -->
+
+	<!-- Castor -->
+	<bean id="unmarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+		<property name="mappingLocation" value="sample/spring3/_11_oxm/sql_mapping_castor.xml" />
+	</bean>
+</beans>

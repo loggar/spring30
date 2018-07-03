@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- persistence -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/springbook?characterEncoding=UTF-8" />
+		<property name="username" value="springbook" />
+		<property name="username" value="springbookpw" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- aop -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+	<bean id="transactionAdvice" class="sample.spring3._06_factorybean.TransactionAdvice">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<bean id="transactionPointcut" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* *..*ServiceImpl.upgradeLevels*(..))" />
+	</bean>
+
+	<bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="transactionAdvice" />
+		<property name="pointcut" ref="transactionPointcut" />
+	</bean>
+
+	<!-- application components -->
+	<bean id="userDao" class="sample.spring3._03_transaction.UserDaoMysqlJdbc">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="userService" class="sample.spring3._05_proxy.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+
+	<bean id="userServiceTest" class="sample.spring3._07_pointcut.TestUserServiceNotTransaction" parent="userService">
+	</bean>
+
+	<bean id="testUserServiceImpl" class="sample.spring3._07_pointcut.TestUserServiceImpl" parent="userService">
+	</bean>
+</beans>

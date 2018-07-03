@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sample.spring3._08_transaction_attibute</title>
+</head>
+<body>
+    <h1>Transaction 속성</h1>
+    <div>
+        <h2>Transaction Propagation 트랜잭션 전파</h2>
+        <dl>
+            <dt>PROPAGATION_REQUIRED</dt><dd>진행중인 트랜잭션이 없으면 새로 시작, 이미 시작된 트랜잭션이 있으면 참여 (DefaultTransactionDefinition 의 트랜잭션 전파 속성)</dd>
+            <dt>PROPAGATION_REQUIRES_NEW</dt><dd>이미 진행중인 트랜잭션의 존재여부와 관계없이 항상 독립적인 트랜잭션 생성</dd>
+            <dt>PROPAGATION_NOT_SUPPORTED</dt><dd>트랜잭션을 시작하지 않음. 특정 pointcut 에 트랜잭션을 제외하고자 할때 유용</dd>
+            <dt>기타</dt><dd></dd>
+        </dl>
+    </div>
+    <div>
+        <h2>ISOLATION LEVEL 격리수준</h2>
+        <dl>
+            <dt>ISOLRATION_DEFAULT</dt><dd>DataSource 에 설정되어있는 디폴트 격리수준을 따름 (DefaultTransactionDefinition 의 격리수준)</dd>
+            <dt>기타</dt><dd></dd>
+        </dl>
+    </div>
+    <div>
+        <h2>TIMEOUT 제한시간</h2>
+        <p>트랜잭션을 수행하는 제한시간. DefaultTransactionDefinition 의 기본설정은 제한시간이 없는것이다.<br />
+            트랜잭션을 직접 생성할 수 있는 PROPAGATION_REQUIRED 나 PROPAGATION_REQUIRES_NEW 트랜잭션 전파 속성과 함께 지정되어야 의미가 있다.
+        </p>
+    </div>
+    <div>
+        <h2>READ ONLY 읽기전용</h2>
+        <p>읽기전용으로 설정해두면 트랜잭션 내에서 데이터를 조작할 수 없게 할수 있다. 데이터 액세스 기술에 따라 성능향상을 꾀할 수 있다.</p>
+    </div>
+</body>
+</html>

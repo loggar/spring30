@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sample.spring3._07_pointcut.AspectJExpressionPointcutTest</title>
+</head>
+<body>
+    <h1>AutoProxyCreator 와 AspectJ Pointcut Expression 의 Pointcut. getClassFilter() 는 다르다.</h1>
+    <p>스프링AOP 의 핵심 동작원리는 BeanPostProcessor 를 이용한 자동 프록시 생성방법이다. JDK다이나믹 프록시(내지는 CGLib프록시)를 적용하기 위해서는 프록시 생성 대상이 필요하고 이를 선정하는 작업이 BeanPostProcessor 를 통해서 일어난다.</p>
+    <p>Pointcut 은 ProxyFactoryBean 을 사용해서 직접 타겟(또는 타겟소스)을 지정하지 않는 프록시 자동생성의 대상을 선정하는 작업에도 포인트컷터로서 참여한다. </p>
+    <div>
+        <pre><code>
+    public interface Pointcut {
+        ClassFilter getClassFilter();
+        MethodMatcher getMethodMatcher();
+    }
+        </code></pre>
+    </div>
+    <p>Pointcut의 생김새는 위와 같다. 클래스 필터 하나 메소드 매처 하나로 이루어져있다. 메소드 매처는 다시 파라미터를 확인하는지 여부에 따라 스태틱과 다이나믹으로 구분된다. 어쨌든 이것만 보면 자동프록시생성에 참여하는 것은 포인트컷의 ClassFilter 일 겄으로 생각하기 쉽다.</p>
+    <p>하지만 아니다. 중요한 것은 최종 Advice 를 적용할 대상 메소드가 존재하는지 여부이기 때문이다. 따라서 자동프록시 생성기들도 클래스필터를 통과했다고 해도 다시 메소드 단위까지 MethodMatcher 를 적용해보고 최소한 하나이상의 메소드가 match 가 되야 프록시 생성 대상으로 삼는다. AOPUtil의 canApply() 메소드를 살펴보면 이런 작업과정을 파악할 수 있다.</p>
+    <p>그런데 2.0이전의 유일한 방식이었던 스프링 어드바이저를 이용한 오토프록싱 방식에서는 이 클래스필터가 제법 필터로서 역할을 했다. 사실 클래스필터에서 걸러지지 않으면 메소드매처는 시도조차 할 필요가 없다. 빈 이름을 필터로 사용하는 BeanNameAutoProxyCreator 나 커스톰 어드바이저의 클래스필터를 적용하는 DefaultAdvisorAutoProxyCreator 등은 당연히 ClassFilter가 중요한 역할을 차지한다.</p>
+    <p>하지만 AspectJ Pointcut Expression 을 사용하기 시작한 2.0부터는 조금 다르다. 포인트컷팅을 AspectJ PE 에 의지하기 때문이다. 물론 AspectJExpressionPointcut 을 이용하기 때문에 역시 Pointcut 인터페이스를 구현한 것은 마찬가지이다. 따라서 ClassFilter 가 분명 존재한다. 하지만 AspectJ PE 의 경우는 ClassFilter 가 우리가 예상할 수 있는 클래스 필터와 다르게 동작한다.</p>
+    <p>이 ClassFilter 는 내부적으로 PointcutExpression 의 couldMatchJoinPointsInType() 이라는 메소드를 한번 확인할 뿐이기 때문이다. 이 메소드는 단지 이 타입에 조인포인트를 매치해볼 수 있느냐는 확인밖에 안해준다. 스프링AOP 는 메소드 실행이 유일한 조인포인트이다. 따라서 메소드가 존재하면 무조건 이 테스트는 통과한다.</p>
+    <p>따라서 포인트컷 식이 “execution(* a.b.c.XYZ.*(..))"라고 되어있다고 할지라도 XYZ클래스가 아닌 타겟에 대해서도 ClassFilter의 match()는 true를 리턴한다. 결국 포인트컷 표현식가지고 메소드 단위로 적용해보는 MethodMatcher에서야 클래스의 비교까지도 이뤄진다는 점이다.</p>
+    <p>스프링의 전통적인 Pointcut 과 AspectJ EL 의 차이점 때문에 발생하는 문제이다. 하지만 ApsectJ EL 을 사용해서 스프링의 자동프록시생성 방식을 절묘하게 결합시키는 것을 가능하게했다는 것은 재밌는 일이다.Pointcut, Advice, Advisor, AutoProxyCreator 등의 잘 짜여진 추상화된 모델의 뛰어난 확장성 덕분인듯 싶다. @Aspect 를 사용한 경우라도 내부적으로는 스프링AOP 의 자동 프록시 생성방식을 따르는 AnnotationAwareAspectJAutoProxyCreator 에 의해서 프록시가 만들어진다는 것. 이 AutoProxyCreator 는 시드니대 88학번인 로드존슨이 이미 2003년에 만든 것이다. AspectJ 가 한참 적용되고 발전한 지금까지도(2013/04/20) 이 설계는 변하지 않고 적용되고 있다.</p>
+</body>
+</html>

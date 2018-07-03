@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="mailSender" class="sample.spring3._04_mail.MailSenderDummy">
+		<property name="host" value="localhost" />
+		<property name="port" value="587" />
+		<property name="username" value="mailuser" />
+		<property name="password" value="mailuserpwd" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="localhost" />
+		<property name="port" value="587" />
+		<property name="username" value="mailuser" />
+		<property name="password" value="mailuserpwd" />
+		<property name="defaultEncoding" value="utf-8" />
+		</bean> -->
+
+
+	<bean id="userService" class="sample.spring3._04_mail.UserServiceMail_03">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+</beans>
