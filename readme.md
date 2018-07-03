@@ -2,11 +2,9 @@
 
 This repository has been writing for a personal development practice.
 
-## Java, Spring3
+## Java, Spring 3.0
 
 refs)
 
 * http://spring.io/
 * toby spring frameworks 3
-
-sync test
