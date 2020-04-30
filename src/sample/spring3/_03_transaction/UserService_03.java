@@ -6,10 +6,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import sample.spring3._03_transaction.Level;
-import sample.spring3._03_transaction.User;
-import sample.spring3._03_transaction.UserDao;
-
 /**
  * PlatformTransactionManager 을 DI 하여 의존성 탈피.
  * 

@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import sample.spring3._03_transaction.Level;
 import sample.spring3._03_transaction.User;
 import sample.spring3._03_transaction.UserDao;
-import sample.spring3._05_proxy.UserService;
 
 /**
  * 간단한 Proxy Class Test

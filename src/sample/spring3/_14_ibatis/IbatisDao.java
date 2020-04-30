@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 
-import sample.spring3._13_jdbc.Member;
-
 import com.ibatis.sqlmap.client.SqlMapClient;
+
+import sample.spring3._13_jdbc.Member;
 
 public class IbatisDao {
 	private SqlMapClientTemplate sqlMapClientTemplate;

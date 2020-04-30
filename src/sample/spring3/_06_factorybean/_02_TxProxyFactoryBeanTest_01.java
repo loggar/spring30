@@ -19,7 +19,6 @@ import sample.spring3._03_transaction.User;
 import sample.spring3._03_transaction.UserDao;
 import sample.spring3._05_proxy.UserService;
 import sample.spring3._05_proxy.UserServiceImpl;
-import sample.spring3._06_factorybean.TxProxyFactoryBean;
 
 /**
  * TxProxyFactoryBean 를 생성하여 txProxyFactoryBean.getObject() 를 통해 UserService 를 반환받음.

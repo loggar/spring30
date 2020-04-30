@@ -18,8 +18,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import sample.spring3._03_transaction.Level;
 import sample.spring3._03_transaction.User;
 import sample.spring3._03_transaction.UserDao;
-import sample.spring3._05_proxy.TransactionHandler;
-import sample.spring3._05_proxy.UserService;
 
 /**
  * TransactionHandler Dynamic Proxy Class 를 이용한 광범위한 트랜잭션 구현부 테스트

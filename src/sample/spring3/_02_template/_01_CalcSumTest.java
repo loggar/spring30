@@ -8,8 +8,6 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import sample.spring3._02_template.Calculator;
-
 public class _01_CalcSumTest {
 	Calculator calculator;
 	String numFilepath;

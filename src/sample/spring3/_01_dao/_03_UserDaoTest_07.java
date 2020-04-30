@@ -13,9 +13,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sample.spring3._01_dao.User;
-import sample.spring3._01_dao.UserDaoInterface_01;
-
 /**
  * applicationContext Spring Bean
  * 

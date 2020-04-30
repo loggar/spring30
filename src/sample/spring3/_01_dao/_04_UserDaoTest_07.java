@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sample.spring3._01_dao.User;
-import sample.spring3._01_dao.UserDaoInterface_01;
-
 /**
  * with Spring DI from applicationContext by "@Autowired"
  * 

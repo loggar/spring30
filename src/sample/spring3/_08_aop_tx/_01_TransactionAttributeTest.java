@@ -29,12 +29,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import sample.spring3._08_aop_tx.Level;
-import sample.spring3._08_aop_tx.User;
-import sample.spring3._08_aop_tx.UserDao;
-import sample.spring3._08_aop_tx.UserService;
-import sample.spring3._08_aop_tx.UserServiceImpl;
-
 /**
  * aop namespace 이용한 pointcut 및 transactionAdvice 적용
  * tx namespace 이용한 Transaction Attribute 적용

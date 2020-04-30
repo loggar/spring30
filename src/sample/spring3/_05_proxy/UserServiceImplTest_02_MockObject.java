@@ -11,9 +11,6 @@ import org.junit.Test;
 
 import sample.spring3._03_transaction.Level;
 import sample.spring3._03_transaction.User;
-import sample.spring3._05_proxy.MockUserDao;
-import sample.spring3._05_proxy.UserService;
-import sample.spring3._05_proxy.UserServiceImpl;
 
 /**
  * Mock Object 를 이용한 고립된 단위테스트

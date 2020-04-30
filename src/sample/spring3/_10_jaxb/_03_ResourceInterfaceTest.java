@@ -18,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import sample.spring3._08_aop_tx.Level;
 import sample.spring3._08_aop_tx.User;
-import sample.spring3._10_jaxb.UserService;
 
 /**
  * resource 의 종류에 관계없이 읽기위한 SqlReader, 어떠한 object 형태로 resource 를 세팅 해둘지를 결정하는 SqlRegistry.

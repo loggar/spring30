@@ -11,9 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import sample.spring3._01_dao.User;
-import sample.spring3._01_dao.UserDaoInterface_01;
-
 /**
  * JUnit "@Before", "@After"..
  * 

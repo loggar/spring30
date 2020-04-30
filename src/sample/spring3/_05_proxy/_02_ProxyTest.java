@@ -7,11 +7,6 @@ import java.lang.reflect.Proxy;
 
 import org.junit.Test;
 
-import sample.spring3._05_proxy.Hello;
-import sample.spring3._05_proxy.HelloTarget;
-import sample.spring3._05_proxy.HelloUpperProxy;
-import sample.spring3._05_proxy.HelloUpperProxyHandler;
-
 public class _02_ProxyTest {
 	@Test
 	public void helloTest() {

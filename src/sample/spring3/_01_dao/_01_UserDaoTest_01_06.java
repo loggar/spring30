@@ -9,15 +9,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import sample.spring3._01_dao.DaoFactory_05;
-import sample.spring3._01_dao.DaoFactory_06;
-import sample.spring3._01_dao.User;
-import sample.spring3._01_dao.UserDaoInterface_01;
-import sample.spring3._01_dao.UserDao_01;
-import sample.spring3._01_dao.UserDao_02;
-import sample.spring3._01_dao.UserDao_03;
-import sample.spring3._01_dao.UserDao_04;
-
 public class _01_UserDaoTest_01_06 {
 	@Test
 	public void userDao_01_test() throws ClassNotFoundException, SQLException {

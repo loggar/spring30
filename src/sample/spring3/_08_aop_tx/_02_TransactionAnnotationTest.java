@@ -31,13 +31,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import sample.spring3._08_aop_tx.Level;
-import sample.spring3._08_aop_tx.User;
-import sample.spring3._08_aop_tx.UserDao;
-import sample.spring3._08_aop_tx.UserServiceAnnotationTx;
-import sample.spring3._08_aop_tx.UserServiceAnnotationTxImpl;
-import sample.spring3._08_aop_tx.UserServiceImpl;
-
 /**
  * <tx:annotation-driven /> 으로 설정된 Transaction Proxy 생성과
  * 인터페이스의 메소드 단위에 설정된 Transaction Attribute.

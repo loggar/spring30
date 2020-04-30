@@ -1,10 +1,10 @@
 package sample.spring3._03_transaction;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import sample.spring3._03_transaction.Level;
-import sample.spring3._03_transaction.User;
-import sample.spring3._03_transaction.UserDao;
-import sample.spring3._03_transaction.UserService_00;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/sample/spring3/_03_transaction/test-UserService_00.xml")

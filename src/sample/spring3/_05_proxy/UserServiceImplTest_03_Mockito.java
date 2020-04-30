@@ -1,12 +1,15 @@
 package sample.spring3._05_proxy;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
 /*
  * static import 하면 org.mockito.Mockito 의 메소드들을 로컬 메소드처럼 호출 할 수 있어 편하다.
  */
-import static org.mockito.Mockito.*;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +20,6 @@ import org.junit.Test;
 import sample.spring3._03_transaction.Level;
 import sample.spring3._03_transaction.User;
 import sample.spring3._03_transaction.UserDao;
-import sample.spring3._05_proxy.UserService;
-import sample.spring3._05_proxy.UserServiceImpl;
 
 /**
  * Mockito framework 을 이용한 간단한 Mock Test.

@@ -10,9 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sample.spring3._06_factorybean.Message;
-import sample.spring3._06_factorybean.MessageFactoryBean;
-
 /**
  * ApplicationContext 로부터 message bean 을 가져와 FactoryBean 이 생성하는 인스턴스를 확인
  * 

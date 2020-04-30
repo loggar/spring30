@@ -9,10 +9,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import sample.spring3._03_transaction.Level;
-import sample.spring3._03_transaction.User;
-import sample.spring3._03_transaction.UserDao;
-
 /**
  * Spring 의 Transaction interface 인 PlatformTransactionManager 트랜잭션을 적용한 UserService
  * 

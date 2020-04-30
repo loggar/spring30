@@ -8,10 +8,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import sample.spring3._03_transaction.Level;
-import sample.spring3._03_transaction.User;
-import sample.spring3._03_transaction.UserDao;
-
 /**
  * TransactionSynchronizationManager 트랜잭션을 적용한 UserService
  * 

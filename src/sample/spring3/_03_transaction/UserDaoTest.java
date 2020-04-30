@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sample.spring3._03_transaction.Level;
-import sample.spring3._03_transaction.User;
-import sample.spring3._03_transaction.UserDao;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/sample/spring3/_03_transaction/test-UserService_00.xml")
 public class UserDaoTest {

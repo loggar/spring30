@@ -20,9 +20,6 @@ import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import sample.spring3._01_dao.User;
-import sample.spring3._01_dao.UserDaoInterface_02;
-
 /**
  * Spring Jdbc 의 DataAccessException 검증.
  * 
