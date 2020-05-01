@@ -48,7 +48,7 @@ public class _02_AspectJExpressionPointcutTest {
 
 	@Test
 	public void debugSpringBeans() {
-		Logger logger = LoggerFactory.getLogger(_02_AspectJExpressionPointcutTest.class);
+		Logger logger = LoggerFactory.getLogger(this.getClass());
 
 		logger.debug("userService.getClass().getName(): " + userService.getClass().getName());
 		logger.debug("userServiceTest.getClass().getName(): " + userServiceTest.getClass().getName());
