@@ -30,42 +30,41 @@ public class RegisterController {
 	private GroupService groupService;
 	private UserService userService;
 	private UsernameValidator usernameValidator;
-	
+
 	@Autowired
 	public void init(GroupService groupService, UserService userService, UsernameValidator usernameValidator) {
 		this.groupService = groupService;
 		this.userService = userService;
 		this.usernameValidator = usernameValidator;
 	}
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("id", "logins");
 	}
-	
+
 	@ModelAttribute
 	public List<Group> groups() {
-		return this.groupService.getAll(); 
+		return this.groupService.getAll();
 	}
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public String showform(ModelMap model) {
 		User user = new User();
 		user.setType(Type.MEMBER); // default type
 		model.addAttribute(user);
 		return "register";
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public String register(@ModelAttribute @Valid User user, BindingResult result, SessionStatus status) {
 		this.usernameValidator.validate(user, result);
 		if (result.hasErrors()) {
 			return "register";
 		}
-		else {
-			this.userService.add(user);				
-			status.setComplete();
-			return "redirect:welcome";
-		}
+
+		this.userService.add(user);
+		status.setComplete();
+		return "redirect:welcome";
 	}
 }

@@ -12,7 +12,6 @@ import javax.inject.Provider;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.support.SessionStatus;
 
 import springbook.sug.domain.Login;
@@ -43,7 +42,7 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void resultHasErrors() throws HttpSessionRequiredException {
+	public void resultHasErrors() {
 		when(result.hasErrors()).thenReturn(true);
 		String viewName = loginController.login(login, result, status);
 		assertThat(viewName, is("login"));
@@ -51,7 +50,7 @@ public class LoginControllerTest {
 	}
 
 	@Test
-	public void loginValidationFail() throws HttpSessionRequiredException {
+	public void loginValidationFail() {
 		when(result.hasErrors()).thenReturn(false, true);
 		String viewName = loginController.login(login, result, status);
 		assertThat(viewName, is("login"));
@@ -61,10 +60,9 @@ public class LoginControllerTest {
 	@Test
 	public void formSuccess() {
 		when(result.hasErrors()).thenReturn(false);
-		
-		@SuppressWarnings("unchecked")
-		Provider<LoginInfo> provider = mock(Provider.class);
-		
+
+		@SuppressWarnings("unchecked") Provider<LoginInfo> provider = mock(Provider.class);
+
 		LoginInfo loginInfo = mock(LoginInfo.class);
 		when(provider.get()).thenReturn(loginInfo);
 		loginController.setLoginInfoProvider(provider);

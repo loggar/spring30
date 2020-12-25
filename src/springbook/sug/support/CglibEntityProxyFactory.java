@@ -14,20 +14,18 @@ public class CglibEntityProxyFactory implements EntityProxyFactory {
 		e.setSuperclass(clazz);
 		e.setCallback(new MethodInterceptor() {
 			private T entity;
-			public Object intercept(Object obj, Method method, Object[] args,
-					MethodProxy proxy) throws Throwable {
+
+			public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
 				if (method.getName().equals("getId")) {
 					return id;
 				}
-				else {
-					if (entity == null) {
-						entity = dao.get(id);
-					}
-					return proxy.invoke(entity, args);
+				if (entity == null) {
+					entity = dao.get(id);
 				}
+				return proxy.invoke(entity, args);
 			}
 		});
-		
-		return (T)e.create();
+
+		return (T) e.create();
 	}
 }

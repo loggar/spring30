@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import sample.spring3._16_webtest.AbstractDispatcherServletTest;
 
 /**
- * 제너릭스와 매핑정보 상속을 이용한 컨트롤러 예시
- *     제너릭스를 통해 여러 컨트롤러 클래스들의 URL 매핑의 관례를 구성하였다.
+ * 제너릭스와 매핑정보 상속을 이용한 컨트롤러 예시 제너릭스를 통해 여러 컨트롤러 클래스들의 URL 매핑의 관례를 구성하였다.
  */
 public class _02_GenericControllerTest extends AbstractDispatcherServletTest {
 	@Test
@@ -44,7 +43,7 @@ public class _02_GenericControllerTest extends AbstractDispatcherServletTest {
 
 		@RequestMapping("/view")
 		public T view(P id) {
-			return (T) null;
+			return null;
 		}
 
 		@RequestMapping("/delete")
@@ -53,7 +52,7 @@ public class _02_GenericControllerTest extends AbstractDispatcherServletTest {
 
 		@RequestMapping("/list")
 		public List<T> list() {
-			return (List<T>) null;
+			return null;
 		}
 	}
 

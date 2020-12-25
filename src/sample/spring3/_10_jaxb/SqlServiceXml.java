@@ -42,7 +42,8 @@ public class SqlServiceXml implements SqlService {
 
 	public String getSql(String key) throws SqlRetrievalFailureException {
 		String sql = sqlMap.get(key);
-		if (sql == null) throw new SqlRetrievalFailureException(key + "를 이용해서 SQL을 찾을 수 없습니다");
-		else return sql;
+		if (sql == null)
+			throw new SqlRetrievalFailureException(key + " : cannot find sql");
+		return sql;
 	}
 }

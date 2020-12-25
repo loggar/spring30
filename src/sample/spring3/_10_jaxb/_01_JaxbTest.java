@@ -3,7 +3,6 @@ package sample.spring3._10_jaxb;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -16,16 +15,14 @@ import sample.spring3._10_jaxb.sqlmap.SqlType;
 import sample.spring3._10_jaxb.sqlmap.Sqlmap;
 
 /**
- * JAXB TEST
- * "/sqlmap.xsd" 컴파일로 생성된 sample.spring3._10_jaxb.SqlMap 의 사용
+ * JAXB TEST "/sqlmap.xsd" 컴파일로 생성된 sample.spring3._10_jaxb.SqlMap 의 사용
  * 
- * 용어 Marshalling: 바인딩 오브젝트 -> XML
- * UnMarshalling: XML -> 자바 오브젝트
+ * 용어 Marshalling: 바인딩 오브젝트 -> XML UnMarshalling: XML -> 자바 오브젝트
  * 
  */
 public class _01_JaxbTest {
 	@Test
-	public void readSqlmap() throws JAXBException, IOException {
+	public void readSqlmap() throws JAXBException {
 		String contextPath = Sqlmap.class.getPackage().getName();
 		JAXBContext context = JAXBContext.newInstance(contextPath);
 		Unmarshaller unmarshaller = context.createUnmarshaller();

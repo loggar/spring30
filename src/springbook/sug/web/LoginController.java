@@ -21,13 +21,13 @@ import springbook.sug.web.validator.LoginValidator;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes("login") 
+@SessionAttributes("login")
 public class LoginController {
 	private LoginValidator loginValidator;
 	private UserService userService;
 	private Provider<LoginInfo> loginInfoProvider;
 
-	@Inject 	
+	@Inject
 	public void setLoginInfoProvider(Provider<LoginInfo> loginInfoProvider) {
 		this.loginInfoProvider = loginInfoProvider;
 	}
@@ -38,24 +38,24 @@ public class LoginController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String showform(ModelMap model) {
 		model.addAttribute(new Login());
 		return "login";
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public String login(@ModelAttribute @Valid Login login, BindingResult result, SessionStatus status) {
-		if (result.hasErrors()) return "login";
-		
+		if (result.hasErrors())
+			return "login";
+
 		this.loginValidator.validate(login, result);
 		if (result.hasErrors()) {
 			return "login";
 		}
-		else {
-			userService.login(loginInfoProvider.get().currentUser());
-			status.setComplete();
-			return "redirect:user/list";
-		}
+
+		userService.login(loginInfoProvider.get().currentUser());
+		status.setComplete();
+		return "redirect:user/list";
 	}
 }

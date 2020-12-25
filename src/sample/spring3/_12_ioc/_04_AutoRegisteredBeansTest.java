@@ -34,14 +34,12 @@ public class _04_AutoRegisteredBeansTest {
 		System.out.println("[systemProperties] " + bean.systemProperties);
 		System.out.println("[systemEnvironment] " + bean.systemEnvironment);
 
-		org.springframework.core.io.Resource resource = (org.springframework.core.io.Resource) bean.resourceLoader.getResource("WEB-INF/web.xml");
+		org.springframework.core.io.Resource resource = bean.resourceLoader.getResource("WEB-INF/web.xml");
 		System.out.println("[resource.exists()] " + resource.exists());
 	}
 
 	/**
-	 * applicationContext, beanFactory, resourceLoader, applicationEventPublisher, systemProperties, systemEnvironment
-	 * 위 bean 들은 스프링 컨데이너가 초기화 과정에서 기본적으로 등록해준 빈이다.
-	 * 자주 사용하지는 않겠지만 간혹 필요할 때가 있으니 기억해둔다.
+	 * applicationContext, beanFactory, resourceLoader, applicationEventPublisher, systemProperties, systemEnvironment 위 bean 들은 스프링 컨데이너가 초기화 과정에서 기본적으로 등록해준 빈이다. 자주 사용하지는 않겠지만 간혹 필요할 때가 있으니 기억해둔다.
 	 * 
 	 */
 	static class SystemBean {
@@ -54,7 +52,8 @@ public class _04_AutoRegisteredBeansTest {
 		@Value("#{systemEnvironment['Path']}") String path;
 
 		@Resource Properties systemProperties;
-		@SuppressWarnings("rawtypes") @Resource Map systemEnvironment;
+		@SuppressWarnings("rawtypes")
+		@Resource Map systemEnvironment;
 	}
 
 }

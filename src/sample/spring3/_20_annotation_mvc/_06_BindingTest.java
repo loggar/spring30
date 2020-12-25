@@ -261,7 +261,7 @@ public class _06_BindingTest extends AbstractDispatcherServletTest {
 		}
 
 		public String getAsText() {
-			return String.valueOf((Integer) this.getValue());
+			return String.valueOf(this.getValue());
 		}
 
 		public void setAsText(String text) throws IllegalArgumentException {

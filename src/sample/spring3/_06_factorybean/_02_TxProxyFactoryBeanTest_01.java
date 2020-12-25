@@ -35,13 +35,9 @@ public class _02_TxProxyFactoryBeanTest_01 {
 
 	@Before
 	public void setup() {
-		users = Arrays.asList(
-				new User("loggar", "ChangHee Lee", "pw1", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER - 1, 0),
-				new User("loggar2", "ChangHee Lee2", "pw2", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER, 0),
-				new User("loggar3", "ChangHee Lee3", "pw3", Level.SILVER, 60, UserService.MIN_RECCOMENDCOUNT_FOR_GOLD - 1),
-				new User("loggar4", "ChangHee Lee4", "pw4", Level.SILVER, 60, UserService.MIN_RECCOMENDCOUNT_FOR_GOLD),
-				new User("loggar5", "ChangHee Lee5", "pw5", Level.GOLD, 100, 100)
-				);
+		users = Arrays.asList(new User("loggar", "ChangHee Lee", "pw1", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER - 1, 0), new User("loggar2", "ChangHee Lee2", "pw2", Level.BASIC, UserService.MIN_LOGCOUNT_FOR_SILVER, 0),
+				new User("loggar3", "ChangHee Lee3", "pw3", Level.SILVER, 60, UserService.MIN_RECCOMENDCOUNT_FOR_GOLD - 1), new User("loggar4", "ChangHee Lee4", "pw4", Level.SILVER, 60, UserService.MIN_RECCOMENDCOUNT_FOR_GOLD),
+				new User("loggar5", "ChangHee Lee5", "pw5", Level.GOLD, 100, 100));
 	}
 
 	@Test
@@ -51,13 +47,13 @@ public class _02_TxProxyFactoryBeanTest_01 {
 
 		TxProxyFactoryBean txProxyFactoryBean = new TxProxyFactoryBean();
 		txProxyFactoryBean.setTarget(userServiceImpl);
-		txProxyFactoryBean.setTransactionManager((PlatformTransactionManager) transactionManager);
+		txProxyFactoryBean.setTransactionManager(transactionManager);
 		txProxyFactoryBean.setPattern(pattern);
 		txProxyFactoryBean.setServiceInterface(serviceInterface);
 
 		UserService userService = (UserService) txProxyFactoryBean.getObject();
 		assertThat(userService, is(UserService.class));
-		UserService txUserService = (UserService) userService;
+		UserService txUserService = userService;
 
 		userDao.deleteAll();
 		for (User user : users) {

@@ -7,8 +7,7 @@ import sample.spring3._03_transaction.User;
 import sample.spring3._03_transaction.UserDao;
 
 /**
- * 고립된 TEST 용 Mock Object
- * DB-Access 하지 않고 단위테스트 위함.
+ * 고립된 TEST 용 Mock Object DB-Access 하지 않고 단위테스트 위함.
  * 
  */
 public class MockUserDao implements UserDao {
@@ -31,7 +30,7 @@ public class MockUserDao implements UserDao {
 	@Override
 	public int update(User user) {
 		User orgUser = get(user.getId());
-		
+
 		System.out.println("Org: " + orgUser);
 		System.out.println("New: " + user);
 
@@ -48,9 +47,9 @@ public class MockUserDao implements UserDao {
 			}
 
 			return 1;
-		} else {
-			return 0;
 		}
+
+		return 0;
 	}
 
 	@Override
@@ -68,8 +67,7 @@ public class MockUserDao implements UserDao {
 	}
 
 	/**
-	 * 실제 dao 는 db-access 된 데이터이므로, 반환후 db data 의 변경은 없을것이다.
-	 * 그와 동일한 TEST 를 위해 User 의 clone 을 반환.
+	 * 실제 dao 는 db-access 된 데이터이므로, 반환후 db data 의 변경은 없을것이다. 그와 동일한 TEST 를 위해 User 의 clone 을 반환.
 	 */
 	@Override
 	public User get(String id) {
@@ -82,10 +80,10 @@ public class MockUserDao implements UserDao {
 			}
 		}
 
-		if (result == null) return null;
-		else {
-			return result.clone();
-		}
+		if (result == null)
+			return null;
+
+		return result.clone();
 	}
 
 	@Override
@@ -103,9 +101,7 @@ public class MockUserDao implements UserDao {
 	@Override
 	public List<User> getAll() {
 		/*
-		 * 반환받은쪽에서 Iterator 를 시도할때 Iterator 되는 중 Iterator 대상의 변경은 불가능 (java.util.ConcurrentModificationException)
-		 * 이경우 users 에 대해 update 가 시도 될 수 있으므로 해당 경우를 방어하기 위해
-		 * users 의 복사본을 반환한다. users 의 복사본이 Iterator 되고, update 대상은 users 원본.
+		 * 반환받은쪽에서 Iterator 를 시도할때 Iterator 되는 중 Iterator 대상의 변경은 불가능 (java.util.ConcurrentModificationException) 이경우 users 에 대해 update 가 시도 될 수 있으므로 해당 경우를 방어하기 위해 users 의 복사본을 반환한다. users 의 복사본이 Iterator 되고, update 대상은 users 원본.
 		 */
 		List<User> list = new ArrayList<User>();
 

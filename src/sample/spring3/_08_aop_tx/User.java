@@ -12,8 +12,7 @@ public class User {
 	public User() {
 	}
 
-	public User(String id, String name, String password, String email,
-			Level level, int login, int recommend) {
+	public User(String id, String name, String password, String email, Level level, int login, int recommend) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -83,10 +82,9 @@ public class User {
 	public void upgradeLevel() {
 		Level nextLevel = this.level.nextLevel();
 		if (nextLevel == null) {
-			throw new IllegalStateException(this.level + "은  업그레이드가 불가능합니다");
+			throw new IllegalStateException(this.level + " cannot be upgraded");
 		}
-		else {
-			this.level = nextLevel;
-		}
+
+		this.level = nextLevel;
 	}
 }

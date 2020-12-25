@@ -32,25 +32,25 @@ public class UserServiceMail_04 {
 			if (user.getLevel() == null) {
 				isCommit = false;
 				break;
-			} else {
-				SimpleMailMessage msg = new SimpleMailMessage();
-				msg.setTo(user.getEmail());
-				msg.setFrom(from);
-				msg.setSubject(subject);
-				msg.setText(user.getName() + " 님의 등급이 " + user.getLevel().name() + " 으로 Upgrade 되었습니다.");
-
-				mailSenderTransaction.addMsg(msg);
 			}
+			
+			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setTo(user.getEmail());
+			msg.setFrom(from);
+			msg.setSubject(subject);
+			msg.setText(user.getName() + " 님의 등급이 " + user.getLevel().name() + " 으로 Upgrade 되었습니다.");
+
+			mailSenderTransaction.addMsg(msg);
 		}
 
 		if (isCommit) {
 			int sendResult = mailSenderTransaction.sendAll();
 			mailSenderTransaction.clearMsg();
 			return sendResult;
-		} else {
-			mailSenderTransaction.clearMsg();
-			return 0;
 		}
+		
+		mailSenderTransaction.clearMsg();
+		return 0;
 	}
 
 }

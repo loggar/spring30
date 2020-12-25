@@ -34,47 +34,44 @@ public class UserEditController {
 	private GroupService groupService;
 	private UserService userService;
 	private UsernameValidator usernameValidator;
-	@SuppressWarnings("unused")
-	private @Inject Provider<LoginInfo> loginInfoProvider;
-	
+	@SuppressWarnings("unused") private @Inject Provider<LoginInfo> loginInfoProvider;
+
 	@Autowired
 	public void init(GroupService groupService, UserService userService, UsernameValidator usernameValidator) {
 		this.groupService = groupService;
 		this.userService = userService;
 		this.usernameValidator = usernameValidator;
 	}
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("id", "logins");
 	}
-	
+
 	@ModelAttribute
 	public List<Group> groups() {
-		return this.groupService.getAll(); 
+		return this.groupService.getAll();
 	}
 
 	@ModelAttribute
 	public Type[] types() {
-		return Type.values(); 
+		return Type.values();
 	}
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public String showform(@PathVariable int id, ModelMap model) {
 		model.addAttribute(this.userService.get(id));
 		return "user/edit";
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public String edit(@ModelAttribute @Valid User user, BindingResult result, SessionStatus status) {
 		this.usernameValidator.validate(user, result);
 		if (result.hasErrors()) {
 			return "user/edit";
 		}
-		else {
-			this.userService.update(user);
-			status.setComplete();
-			return "redirect:../list";
-		}
+		this.userService.update(user);
+		status.setComplete();
+		return "redirect:../list";
 	}
 }

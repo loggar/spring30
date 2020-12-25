@@ -41,9 +41,9 @@ public class TransactionHandler implements InvocationHandler {
 		if (method.getName().startsWith(pattern)) {
 			System.out.println("invoke " + target.getClass().getName() + "." + method.getName() + " with Transaction");
 			return invokeInTransaction(method, args);
-		} else {
-			return method.invoke(target, args);
 		}
+
+		return method.invoke(target, args);
 	}
 
 	private Object invokeInTransaction(Method method, Object[] args) throws Throwable {

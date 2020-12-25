@@ -22,9 +22,9 @@ public class HelloUpperProxyHandler implements InvocationHandler {
 
 		if (ret instanceof String && method.getName().startsWith("say")) {
 			return ((String) ret).toUpperCase();
-		} else {
-			return ret;
 		}
+		
+		return ret;
 	}
 
 }
