@@ -30,7 +30,7 @@ public class _01_ApplicationContextTest {
 	private String basePath = StringUtils.cleanPath(ClassUtils.classPackageAsResourcePath(getClass())) + "/";
 
 	/**
-	 * 테스트용 ApplicationContext 작성
+	 * TEST ApplicationContext
 	 */
 	@Test
 	public void registerBean() {

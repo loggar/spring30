@@ -18,7 +18,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.io.ResourceLoader;
 
 /**
- * 스프링 컨테이너 기본 등록 빈
+ * Initially registered Spring Beans
  * 
  */
 public class _04_AutoRegisteredBeansTest {

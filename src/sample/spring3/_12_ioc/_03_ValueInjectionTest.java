@@ -24,7 +24,7 @@ import org.springframework.core.io.ClassPathResource;
 
 public class _03_ValueInjectionTest {
 	/**
-	 * "@Value" 는 주요 용도는 자바 코드 외부의 리소스나 환경정보에 담긴 값을 사용하도록 지정해주는 데 있다.
+	 * "@Value" for storing resources outside or environments.
 	 */
 	@Test
 	public void valueInjection() {
